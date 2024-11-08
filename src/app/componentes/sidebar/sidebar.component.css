@@ -1,0 +1,85 @@
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 100vh;
+    background-color: #343a40;
+    color: white;
+    transition: width 0.3s ease;
+    overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .sidebar.collapsed {
+    width: 60px;
+  }
+  
+  .sidebar-list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+  }
+  
+  .sidebar-item {
+    padding: 10px 15px;
+    width: 100%;
+  }
+  
+  .nav-link {
+    display: flex;
+    align-items: center;
+    color: white;
+    text-decoration: none;
+    white-space: nowrap;
+    overflow: hidden;
+    transition: padding 0.3s ease;
+  }
+  
+  .nav-link i {
+    font-size: 1.5rem;
+    margin-right: 10px;
+    transition: margin 0.3s ease;
+  }
+  
+  .sidebar.collapsed .nav-link i {
+    margin-right: 0;
+  }
+  
+  .link-text {
+    transition: opacity 0.3s ease, width 0.3s ease;
+    opacity: 1;
+    width: auto;
+    overflow: hidden;
+  }
+  
+  .sidebar.collapsed .link-text {
+    opacity: 0;
+    width: 0;
+  }
+  .custom-icon-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    z-index: 1050; 
+    background-color: rgb(255, 255, 255);
+    color: rgb(53, 51, 51);
+    border: 2px solid #343a40;
+    box-shadow: 0 4px 8px rgba(54, 54, 54, 0.3);
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  .custom-icon-button:hover {
+    background-color: #1a1a1a;
+    transform: scale(1.1); /* Efecto de agrandamiento al pasar el cursor */
+  }
+  
+  .custom-icon-button i {
+    font-size: 1.5rem;
+  }
+  

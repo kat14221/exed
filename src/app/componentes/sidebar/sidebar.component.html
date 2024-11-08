@@ -1,0 +1,36 @@
+<p-sidebar [(visible)]="sidebarVisible" position="left" [baseZIndex]="10000" [style]="{width: isCollapsed ? '60px' : '200px'}">
+    <div class="sidebar" [class.collapsed]="isCollapsed" (mouseenter)="toggleSidebar(false)" (mouseleave)="toggleSidebar(true)">
+      <ul class="sidebar-list">
+        <li class="sidebar-item">
+          <a class="nav-link" routerLink="/home" (click)="sidebarVisible = false">
+            <i class="bi bi-house-door me-2"></i>
+            <span class="link-text" [class.hidden]="isCollapsed">Home</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="nav-link" routerLink="/carrito" (click)="sidebarVisible = false">
+            <i class="bi bi-cart me-2"></i>
+            <span class="link-text" [class.hidden]="isCollapsed">Carrito</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+          <a class="nav-link" routerLink="/cliente" (click)="sidebarVisible = false">
+            <i class="bi bi-person me-2"></i>
+            <span class="link-text" [class.hidden]="isCollapsed">Cliente</span>
+          </a>
+        </li>
+        <li class="sidebar-item">
+            <a class="nav-link" routerLink="/factura" (click)="sidebarVisible = false">
+              <i class="bi bi-file-text me-2"></i>
+              <span class="link-text" [class.hidden]="isCollapsed">Factura</span>
+            </a>
+          </li>
+      </ul>
+    </div>
+  </p-sidebar>
+  
+  <button 
+  class="btn btn-dark rounded-circle custom-icon-button" 
+  (click)="toggleSidebar2()">
+  <i class="bi bi-arrow-right"></i>
+</button>

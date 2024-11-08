@@ -1,0 +1,56 @@
+<app-sidebar></app-sidebar>
+<div class="container mt-4">
+    <p-panel header="Gestión de Carritos" class="mb-4">
+      <p-toast></p-toast>
+  
+      <!-- Botón para crear nuevo carrito -->
+      <button pButton label="Nuevo Carrito" icon="pi pi-plus" class="btn btn-primary" (click)="showDialogCreate()"></button>
+  
+      <!-- Tabla de carritos -->
+      <div class="table-responsive mt-3">
+        <p-table [value]="carritos" [paginator]="true" [rows]="5" [responsiveLayout]="'scroll'">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ID</th>
+              <th>Usuario</th>
+              <th>Artículo</th>
+              <th>Acciones</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-carrito>
+            <tr>
+              <td>{{ carrito.id }}</td>
+              <td>{{ carrito.usuario }}</td>
+              <td>{{ carrito.articulo }}</td>
+              <td>
+                <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-info me-2" (click)="showDialogEdit(carrito.id)"></button>
+                <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCarrito(carrito.id)"></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </p-panel>
+  
+    <!-- Diálogo para crear o editar carrito -->
+    <p-dialog header="{{ titulo }}" [(visible)]="visible" [modal]="true" [closable]="true" [style]="{ width: '400px' }">
+      <div class="p-fluid">
+        <div class="mb-3">
+          <label for="usuario" class="form-label">Usuario</label>
+          <input pInputText id="usuario" [(ngModel)]="carrito.usuario" required class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="articulo" class="form-label">Artículo</label>
+          <input pInputText id="articulo" [(ngModel)]="carrito.articulo" required class="form-control" />
+        </div>
+      </div>
+      <p-footer>
+        <button pButton label="{{ opc }}" icon="pi pi-check" class="btn btn-success" (click)="op === 0 ? addCarrito() : updateCarrito()"></button>
+        <button pButton label="Cancelar" icon="pi pi-times" class="btn btn-secondary ms-2" (click)="visible = false"></button>
+      </p-footer>
+    </p-dialog>
+  
+    <!-- Confirmación de eliminación -->
+    <p-confirmDialog header="Confirmación" icon="pi pi-exclamation-triangle" acceptLabel="Sí" rejectLabel="No" (accept)="deleteCarrito(carrito.id)"></p-confirmDialog>
+  </div>
+  

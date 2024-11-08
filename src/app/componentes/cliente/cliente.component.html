@@ -1,0 +1,61 @@
+<app-sidebar></app-sidebar>
+<div class="container mt-4">
+    <p-panel header="Gestión de Clientes" class="mb-4">
+      <p-toast></p-toast>
+  
+      <!-- Botón para crear nuevo cliente -->
+      <button pButton label="Nuevo Cliente" icon="pi pi-plus" class="btn btn-primary" (click)="showDialogCreate()"></button>
+  
+      <!-- Tabla de clientes -->
+      <div class="table-responsive mt-3">
+        <p-table [value]="clientes" [paginator]="true" [rows]="5" [responsiveLayout]="'scroll'">
+          <ng-template pTemplate="header">
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Apellido Paterno</th>
+              <th>Apellido Materno</th>
+              <th>Acciones</th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-cliente>
+            <tr>
+              <td>{{ cliente.id }}</td>
+              <td>{{ cliente.nombre }}</td>
+              <td>{{ cliente.apellido1 }}</td>
+              <td>{{ cliente.apellido2 }}</td>
+              <td>
+                <button pButton icon="pi pi-pencil" class="p-button-rounded p-button-info me-2" (click)="showDialogEdit(cliente.id)"></button>
+                <button pButton icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="deleteCliente(cliente.id)"></button>
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+      </div>
+    </p-panel>
+
+    <p-dialog header="{{ titulo }}" [(visible)]="visible" [modal]="true" [closable]="true" [style]="{ width: '400px' }">
+      <div class="p-fluid">
+        <div class="mb-3">
+          <label for="nombre" class="form-label">Nombre</label>
+          <input pInputText id="nombre" [(ngModel)]="cliente.nombre" required class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="apellido1" class="form-label">Apellido Paterno</label>
+          <input pInputText id="apellido1" [(ngModel)]="cliente.apellido1" required class="form-control" />
+        </div>
+        <div class="mb-3">
+          <label for="apellido2" class="form-label">Apellido Materno</label>
+          <input pInputText id="apellido2" [(ngModel)]="cliente.apellido2" required class="form-control" />
+        </div>
+      </div>
+      <p-footer>
+        <button pButton label="{{ opc }}" icon="pi pi-check" class="btn btn-success" (click)="op === 0 ? addCliente() : updateCliente()"> <i class="pi pi-check"></i></button>
+        <button pButton label="Cancelar" icon="pi pi-times" class="btn btn-secondary ms-2" (click)="visible = false"> <i class="pi pi-times"></i></button>
+      </p-footer>
+    </p-dialog>
+  
+    
+    <p-confirmDialog header="Confirmación" icon="pi pi-exclamation-triangle" acceptLabel="Sí" rejectLabel="No" (accept)="deleteCliente(cliente.id)"></p-confirmDialog>
+  </div>
+  
